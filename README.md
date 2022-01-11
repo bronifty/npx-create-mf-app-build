@@ -93,3 +93,7 @@ const App = () => (
 );
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
+
+### Ref
+
+<a href='https://reactjs.org/docs/error-boundaries.html'>React Error Boundaries</a>
