@@ -1,16 +1,16 @@
 # Module Federation Demo
 
-- to see the demo, run:
+- to see the demo, run the following commands and open browser tabs on localhost:8080 and localhost:8081
 
 ```bash
 yarn
+yarn build
 yarn start
 ```
 
-- to demo the fallback, run:
+- to demo the fallback, run the following commands and open browser on localhost:8080 (it serves the nav app from build via linked library instead of remote federation)
 
 ```bash
-yarn build
 cd packages/host && yarn start
 ```
 
