@@ -41,12 +41,15 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'nav',
-      library: { type: 'var', name: 'nav' },
+      name: 'ab',
+      library: { type: 'var', name: 'ab' },
       filename: 'remoteEntry.js',
-      remotes: {},
+      remotes: {
+        ab: 'ab',
+      },
       exposes: {
-        './Nav': './src/Nav',
+        './variants': './src/variants',
+        './VariantChooser': './src/VariantChooser',
       },
       shared: require('./package.json').dependencies,
     }),

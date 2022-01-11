@@ -45,9 +45,13 @@ module.exports = {
       library: { type: 'var', name: 'home' },
       filename: 'remoteEntry.js',
       remotes: {
-        mfNav: 'nav',
+        home: 'home',
+        ab: 'ab',
       },
-      exposes: {},
+      exposes: {
+        './FrameA': './src/FrameA',
+        './FrameB': './src/FrameB',
+      },
       shared: require('./package.json').dependencies,
     }),
     new HtmlWebPackPlugin({

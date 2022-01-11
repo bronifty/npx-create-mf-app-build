@@ -1,44 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import './index.css';
 
-class HeaderWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return { hasError: true };
-  }
-
-  componentDidCatch() {}
-
-  render() {
-    if (this.state.hasError) {
-      const FallbackNav = React.lazy(() => import('nav/build/Nav'));
-      return (
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <FallbackNav />
-        </React.Suspense>
-      );
-    }
-    const Nav = React.lazy(() => import('mfNav/Nav'));
-
-    return (
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <Nav />
-      </React.Suspense>
-    );
-  }
-}
-
+const FrameA = React.lazy(() => import('home/FrameA'));
+const FrameB = React.lazy(() => import('home/FrameB'));
+const VariantChooser = React.lazy(() => import('ab/VariantChooser'));
 const App = () => (
   <div className='container'>
-    <HeaderWrapper />
     <h2>HOME APP</h2>
+    <React.Suspense fallback={<div>Loading variant</div>}>
+      <VariantChooser
+        test='test1'
+        variations={{
+          a: FrameA,
+          b: FrameB,
+        }}
+        src='https://placedog.net/640/480?id=55'
+        style={{ width: '50%', height: '50%' }}
+      />
+    </React.Suspense>
   </div>
 );
 ReactDOM.render(<App />, document.getElementById('app'));
