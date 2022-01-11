@@ -38,7 +38,7 @@ class HeaderWrapper extends React.Component {
 const App = () => (
   <div className='container'>
     <HeaderWrapper />
-    <h2>HOME</h2>
+    <h2>HOME APP</h2>
   </div>
 );
 ReactDOM.render(<App />, document.getElementById('app'));

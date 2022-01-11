@@ -8,7 +8,7 @@ yarn build
 yarn start
 ```
 
-- to demo the fallback, run the following commands and open browser on localhost:8080 (it serves the nav app from build via linked library instead of remote federation)
+- to demo the fallback, switch to host app and run yarn start then open browser on localhost:8080 (it serves the nav app from build via linked library instead of remote federation)
 
 ```bash
 cd packages/host && yarn start
