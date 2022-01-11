@@ -13,9 +13,22 @@ import Shell from './Shell';
 
 const PageAdmin = () => {
   const { page } = useParams();
-  const { data } = useQuery(['getPage', { page }], fetchPage);
+  const { data, isLoading } = useQuery(['getPage', { page }], () =>
+    fetchPage()(page)
+  );
+  const [fields, setFields] = React.useState({});
+
+  React.useEffect(() => {
+    setFields(data ?? {});
+  }, [data]);
+
   // const data = fetchPage()(page);
-  return <div>Page: - {JSON.stringify(data, null, 2)}</div>;
+  return (
+    <div>
+      Page: - {JSON.stringify(data, null, 2)}
+      {!isLoading && fields && <div>stuff</div>}
+    </div>
+  );
 };
 
 const App = () => (
