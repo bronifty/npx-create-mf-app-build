@@ -38,7 +38,10 @@ npx create-mf-app --name nav
 {
   const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
   ...
-
+  output: {
+  publicPath: 'http://localhost:8081'
+  },
+...
 plugins: [
     new ModuleFederationPlugin({
       name: 'nav',
@@ -77,6 +80,15 @@ plugins: [
     }),
   ],
 };
+```
+
+- add a reference to the remoteEntry.js in the home app's index.html so that the federated module will be in the window/global scope
+
+```html
+<!-- ./packages/home/src/index.html -->
+<head>
+  <script src="http://localhost:8081/remoteEntry.js" />
+</head>
 ```
 
 - now you can refer to the remote module as 'mfNav/Nav' in your host app (we will lazy load it into suspense to handle the async import)
