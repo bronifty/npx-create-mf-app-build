@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
-    "build:start": "cd dist && PORT=3000 npx serve",
+    "build:start": "cd dist && PORT=8080 npx serve",
     "start": "webpack serve --mode development",
     "start:live": "webpack serve --open --mode development --live-reload --hot"
   },
@@ -27,11 +27,11 @@
     "style-loader": "^3.3.0",
     "webpack": "^5.57.1",
     "webpack-cli": "^4.9.0",
-    "webpack-dev-server": "^4.3.1"
+    "webpack-dev-server": "^4.3.1",
+    "tailwindcss": "^2.0.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
-    "nav": "1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }

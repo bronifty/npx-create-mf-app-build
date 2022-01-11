@@ -1,5 +1,9 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const Datastore = require('nedb');
+
+const db = new Datastore({ filename: 'pages.db' });
+db.loadDatabase();
 
 const deps = require('./package.json').dependencies;
 module.exports = {
@@ -12,6 +16,14 @@ module.exports = {
   },
 
   devServer: {
+    before: function (app) {
+      const bodyParser = require('body-parser');
+      app.use(bodyParser.json());
+      app.use(require('cors')());
+      app.get('/api/:page', function (req, res) {
+        const page = req.params.page;
+      });
+    },
     port: 8081,
     historyApiFallback: true,
   },
@@ -41,14 +53,21 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'nav',
-      library: { type: 'var', name: 'nav' },
+      name: 'admin',
       filename: 'remoteEntry.js',
       remotes: {},
-      exposes: {
-        './Nav': './src/Nav',
+      exposes: {},
+      shared: {
+        ...deps,
+        react: {
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+        'react-dom': {
+          singleton: true,
+          requiredVersion: deps['react-dom'],
+        },
       },
-      shared: require('./package.json').dependencies,
     }),
     new HtmlWebPackPlugin({
       template: './src/index.html',
