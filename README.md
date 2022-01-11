@@ -1,5 +1,7 @@
 # Module Federation Demo
 
+- based on <a href='https://www.youtube.com/watch?v=K-yQB9YGmgE' >Jack Herrington's Module Federation demo</a> but with some code fixes
+
 - to see the demo, run the following commands and open browser tabs on localhost:8080 and localhost:8081
 
 ```bash
