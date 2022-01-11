@@ -6,7 +6,7 @@ import Nav from './Nav';
 const App = () => (
   <div className='container'>
     <Nav />
-    <h1>Nav App</h1>
+    <h1>NAV APP</h1>
   </div>
 );
 ReactDOM.render(<App />, document.getElementById('app'));
