@@ -14,6 +14,10 @@ yarn build
 cd packages/host && yarn start
 ```
 
+- <a href='#'>Tutorial Vid</a>
+
+## Summary
+
 - create packages directory (could be named anything) and build 2 mf-apps inside, which will be run by wsrun (a yarn workspaces task runner)
   - follow the prompts to create your app (I'm using react)
 
@@ -89,5 +93,3 @@ const App = () => (
 );
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
-
-- watch the <a href='#'>Tutorial Vid</a> to see how get more info about fallbacks
