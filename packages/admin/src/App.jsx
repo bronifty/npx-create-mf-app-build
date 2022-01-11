@@ -8,20 +8,31 @@ import {
   useParams,
 } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { fetchPage } from './api';
+import Shell from './Shell';
+
+const PageAdmin = () => {
+  const { page } = useParams();
+  const { data } = useQuery(['getPage', { page }], fetchPage);
+  // const data = fetchPage()(page);
+  return <div>Page: - {JSON.stringify(data, null, 2)}</div>;
+};
 
 const App = () => (
-  <Router>
-    <div className='max-w-7xl mx-auto'>
-      <header className='bg-blue-700 text-white w-full font-bold text-3xl'>
-        <h1 className='p-5 text-center'>CMS Editor</h1>
-      </header>
-      <div className='mt-10 text-3xl'>
-        <Routes>
-          <Route path='/:page' element={<div>About</div>} />
-          <Route path='/' element={<div>Home</div>} />
-        </Routes>
+  <Shell>
+    <Router>
+      <div className='max-w-7xl mx-auto'>
+        <header className='bg-blue-700 text-white w-full font-bold text-3xl'>
+          <h1 className='p-5 text-center'>CMS Editor</h1>
+        </header>
+        <div className='mt-10 text-3xl'>
+          <Routes>
+            <Route path='/:page' element={<PageAdmin />} />
+            <Route path='/' element={<div>HOME</div>} />
+          </Routes>
+        </div>
       </div>
-    </div>
-  </Router>
+    </Router>
+  </Shell>
 );
 ReactDOM.render(<App />, document.getElementById('app'));
