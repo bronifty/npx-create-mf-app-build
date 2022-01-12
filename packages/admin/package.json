@@ -32,6 +32,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.4.0",
     "body-parser": "^1.19.1",
     "cors": "^2.8.5",
     "nedb": "^1.8.0",

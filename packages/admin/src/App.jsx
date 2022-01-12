@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,17 +7,21 @@ import {
   useParams,
 } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { fetchPage } from './api';
+
+import './index.scss';
+
 import Shell from './Shell';
-import Editor from './Editor';
 import Page from './Page';
+import Editor from './Editor';
+import { fetchPage } from './api';
 
 const PageAdmin = () => {
   const { page } = useParams();
-  const { isError, isLoading, data } = useQuery(['getPage', { page }], () =>
+  const { data, isLoading } = useQuery(['getPage', { page }], () =>
     fetchPage()(page)
   );
   const [fields, setFields] = React.useState({});
+
   React.useEffect(() => {
     setFields(data ?? {});
   }, [data]);
@@ -44,16 +47,17 @@ const App = () => (
     <Router>
       <div className='max-w-7xl mx-auto'>
         <header className='bg-blue-700 text-white w-full font-bold text-3xl'>
-          <h1 className='p-5 text-center'>CMS Editor</h1>
+          <h1 className='p-5'>CMS Editor</h1>
         </header>
         <div className='mt-10 text-3xl'>
           <Routes>
             <Route path='/:page' element={<PageAdmin />} />
-            <Route path='/' element={<div>HOME</div>} />
+            <Route path='/' element={<div>Home</div>} />
           </Routes>
         </div>
       </div>
     </Router>
   </Shell>
 );
+
 ReactDOM.render(<App />, document.getElementById('app'));

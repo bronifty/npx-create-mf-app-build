@@ -1,7 +1,7 @@
 export const fetchPage =
   (host = '') =>
   (page) =>
-    fetch(`${host}/api/${page}`).then((res) => res.json());
+    fetch(`${host}/api/${page}`).then((resp) => resp.json());
 
 export const postPage =
   (host = '') =>
@@ -10,6 +10,6 @@ export const postPage =
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json',
+        'content-type': 'application/json',
       },
-    }).then((res) => res.json());
+    }).then((resp) => resp.json());

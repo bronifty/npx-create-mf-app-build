@@ -8,7 +8,7 @@ db.loadDatabase();
 const deps = require('./package.json').dependencies;
 module.exports = {
   output: {
-    publicPath: 'http://localhost:8081/',
+    publicPath: 'http://localhost:8080/',
   },
 
   resolve: {
@@ -21,21 +21,28 @@ module.exports = {
       const bodyParser = require('body-parser');
       app.use(bodyParser.json());
       app.use(require('cors')());
+
       app.post('/api/:page', function (req, res) {
         const page = req.params.page;
+
         db.find({ _id: page }, (err, docs) => {
           if (!err && docs.length > 0) {
             db.update({ _id: page }, { $set: req.body }, {}, () => {
               res.json({ record: 'updated' });
             });
           } else {
-            db.insert({ _id: page, ...req.body }, () => {
-              res.json({ record: 'inserted' });
-            });
+            db.insert(
+              {
+                _id: page,
+                ...req.body,
+              },
+              () => {
+                res.json({ record: 'inserted' });
+              }
+            );
           }
         });
       });
-
       app.get('/api/:page', function (req, res) {
         const page = req.params.page;
         db.find({ _id: page }, (err, docs) => {
@@ -47,7 +54,7 @@ module.exports = {
         });
       });
     },
-    port: 8081,
+    port: 8080,
     historyApiFallback: true,
   },
 
@@ -79,7 +86,12 @@ module.exports = {
       name: 'admin',
       filename: 'remoteEntry.js',
       remotes: {},
-      exposes: {},
+      exposes: {
+        './Shell': './src/Shell',
+        './Page': './src/Page',
+        './EmbedPage': './src/EmbedPage',
+        './EmbedEditor': './src/EmbedEditor',
+      },
       shared: {
         ...deps,
         react: {
