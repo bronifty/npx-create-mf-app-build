@@ -10,23 +10,31 @@ import {
 import { useQuery } from 'react-query';
 import { fetchPage } from './api';
 import Shell from './Shell';
+import Editor from './Editor';
+import Page from './Page';
 
 const PageAdmin = () => {
   const { page } = useParams();
-  const { data, isLoading } = useQuery(['getPage', { page }], () =>
+  const { isError, isLoading, data } = useQuery(['getPage', { page }], () =>
     fetchPage()(page)
   );
   const [fields, setFields] = React.useState({});
-
   React.useEffect(() => {
     setFields(data ?? {});
   }, [data]);
 
-  // const data = fetchPage()(page);
   return (
     <div>
-      Page: - {JSON.stringify(data, null, 2)}
-      {!isLoading && fields && <div>stuff</div>}
+      {!isLoading && fields && (
+        <div className='grid grid-cols-2 gap-4'>
+          <Editor
+            {...fields}
+            page={page}
+            onChange={(k, v) => setFields({ ...fields, [k]: v })}
+          />
+          <Page {...fields} />
+        </div>
+      )}
     </div>
   );
 };

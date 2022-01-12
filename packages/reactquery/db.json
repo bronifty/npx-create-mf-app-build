@@ -1,0 +1,39 @@
+{
+  "superheroes": [
+    {
+      "id": 1,
+      "name": "Batman",
+      "alterEgo": "Bruce Wayne"
+    },
+    {
+      "id": 2,
+      "name": "Superman",
+      "alterEgo": "Clark Kent"
+    },
+    {
+      "id": 3,
+      "name": "Wonder Woman",
+      "alterEgo": "Princess Diana"
+    },
+    {
+      "id": 53.06877045671887,
+      "name": "test",
+      "alterEgo": ""
+    },
+    {
+      "id": 98.82515275332042,
+      "name": "abc",
+      "alterEgo": ""
+    },
+    {
+      "id": 53.77294160631618,
+      "name": "xddd",
+      "alterEgo": ""
+    },
+    {
+      "id": 45.20328573636792,
+      "name": "aaaaa",
+      "alterEgo": ""
+    }
+  ]
+}
