@@ -16,7 +16,7 @@ yarn start
 cd packages/home && yarn start
 ```
 
-- <a href='#'>Tutorial Vid</a>
+- <a href='https://youtu.be/8_ra5tK36dQ'>Tutorial Vid</a>
 
 ## Summary
 
